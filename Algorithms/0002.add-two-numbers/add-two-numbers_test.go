@@ -20,27 +20,24 @@ type question struct {
 	a ans
 }
 
-func makeListNode(is []int) *ListNode {
-	if len(is) == 0 {
+func makeListNode(data []int) *ListNode {
+	if len(data) == 0 {
 		return nil
 	}
-
 	res := &ListNode{
-		Val: is[0],
+		Val: data[0],
 	}
-	temp := res
-
-	for i := 1; i < len(is); i++ {
-		temp.Next = &ListNode{Val: is[i]}
-		temp = temp.Next
+	tmp := res
+	for i := 1; i < len(data); i++ {
+		tmp.Next = &ListNode{Val: data[i]}
+		tmp = tmp.Next
 	}
-
 	return res
+
 }
 
 func Test_OK(t *testing.T) {
 	ast := assert.New(t)
-
 	qs := []question{
 		question{
 			p: para{
@@ -51,28 +48,9 @@ func Test_OK(t *testing.T) {
 				one: makeListNode([]int{7, 0, 8}),
 			},
 		},
-		question{
-			p: para{
-				one: makeListNode([]int{9, 8, 7, 6, 5}),
-				two: makeListNode([]int{1, 1, 2, 3, 4}),
-			},
-			a: ans{
-				one: makeListNode([]int{0, 0, 0, 0, 0, 1}),
-			},
-		},
-		question{
-			p: para{
-				one: makeListNode([]int{0}),
-				two: makeListNode([]int{5, 6, 4}),
-			},
-			a: ans{
-				one: makeListNode([]int{5, 6, 4}),
-			},
-		},
 	}
-
 	for _, q := range qs {
-		a, p := q.a, q.p
-		ast.Equal(a.one, addTwoNumbers(p.one, p.two), "输入:%v", p)
+		p, a := q.p, q.a
+		ast.Equal(a.one, addTwoNumbers(p.one, p.two))
 	}
 }

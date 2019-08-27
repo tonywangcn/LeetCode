@@ -6,6 +6,50 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// type para struct {
+// 	one []int
+// 	two int
+// }
+
+// type ans struct {
+// 	one []int
+// }
+
+// type question struct {
+// 	p para
+// 	a ans
+// }
+
+// func Test_OK(t *testing.T) {
+// 	ast := assert.New(t)
+
+// 	qs := []question{
+// 		question{
+// 			p: para{
+// 				one: []int{3, 2, 4},
+// 				two: 6,
+// 			},
+// 			a: ans{
+// 				one: []int{1, 2},
+// 			},
+// 		},
+// 		question{
+// 			p: para{
+// 				one: []int{3, 2, 4},
+// 				two: 8,
+// 			},
+// 			a: ans{
+// 				one: nil,
+// 			},
+// 		},
+// 	}
+
+// 	for _, q := range qs {
+// 		a, p := q.a, q.p
+// 		ast.Equal(a.one, twoSum(p.one, p.two), "输入:%v", p)
+// 	}
+// }
+
 type para struct {
 	one []int
 	two int
@@ -26,8 +70,8 @@ func Test_OK(t *testing.T) {
 	qs := []question{
 		question{
 			p: para{
-				one: []int{3, 2, 4},
-				two: 6,
+				one: []int{1, 2, 3, 4},
+				two: 5,
 			},
 			a: ans{
 				one: []int{1, 2},
@@ -35,8 +79,8 @@ func Test_OK(t *testing.T) {
 		},
 		question{
 			p: para{
-				one: []int{3, 2, 4},
-				two: 8,
+				one: []int{2, 3, 5},
+				two: 9,
 			},
 			a: ans{
 				one: nil,
@@ -45,7 +89,7 @@ func Test_OK(t *testing.T) {
 	}
 
 	for _, q := range qs {
-		a, p := q.a, q.p
-		ast.Equal(a.one, twoSum(p.one, p.two), "输入:%v", p)
+		p, a := q.p, q.a
+		ast.Equal(a.one, twoSum(p.one, p.two))
 	}
 }
