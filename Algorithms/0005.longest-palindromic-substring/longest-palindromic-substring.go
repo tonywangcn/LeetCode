@@ -37,6 +37,9 @@ func isPalindrome(s string) bool {
 
 func longestPalindromeDP(s string) string {
 	n := len(s)
+	if n < 2 {
+		return s
+	}
 	subTable := make([][]bool, n)
 	maxLength := 1
 	i := 0
